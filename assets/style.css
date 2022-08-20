@@ -1,0 +1,172 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+    font-family:'Times New Roman', Times, serif;
+}
+/* Overall Body Styling */
+body {
+    background-color:mediumslateblue;
+}
+
+.header {
+    background-color: white;
+    color: slateblue;
+    border: 3px solid black;
+    padding: 20px;
+    text-align:center;
+}
+
+.header .timer {
+    float:right;
+    margin-top: 40px;
+    color: white;
+}
+
+.header .scores {
+    float:left;
+    margin-top: 20px;
+}
+
+.scores_btn button {
+    margin-top: 15px;
+    font-size: 15px;
+    color: indigo;
+    padding: 15px 20px;
+    border: indigo solid 2px;
+    border-radius: 8px;
+    cursor:pointer;
+}
+
+.start_btn {
+    position:absolute;
+    top: 75%;
+    left: 45%;
+}
+
+/* Start Button Styling */
+.start_btn button {
+    font-size: 25px;
+    color:indigo;
+    padding: 15px 20px;
+    border: indigo solid 2px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Info Box Styling*/
+.info_box {
+    margin-left: 30%;
+    margin-top: 8%;
+    width: 500px;
+    height: 350px;
+    background-color: white;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    font-size: 15px;
+    text-align: center;
+}
+
+/* Info Box Title Styling */
+.info_box .info_box_title {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 20px;
+}
+
+/* Info Box Rules Styling */
+.info_box .info_box_text {
+    padding: 15px 0px;
+    font-size: 14px;
+}
+
+/*.quiz_container {
+    margin-left: 30%;
+    margin-top: 8%;
+    width: 500px;
+    height: 350px;
+    background-color: white;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    font-size: 15px;
+    text-align: left;
+}*/
+
+.quiz-header{
+    padding: 30px;
+  }
+  h2{
+    padding: 15px;
+    text-align: center;
+    margin: 0;
+  }
+  
+  ul{
+    list-style-type: none;
+    padding: 0;
+  }
+  ul li{
+    font-size: 15px;
+    margin: 15px 0;
+  }
+  ul li label{
+    cursor: pointer;
+}
+button{
+  background-color: white;
+  color: indigo;
+  border: none;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: inherit;
+  padding: 10px;
+}
+button:hover{
+  background-color: gold;
+}
+button:focus{
+  outline: none;
+  background-color: #44b927;
+}
+
+.footer {
+    margin: 15px;
+    background-color: white;
+    color: slateblue;
+    border: 3px solid black;
+    padding: 20px;
+    text-align:center;
+}
+
+.total_ques {
+    float: left;
+    padding: 10px 20px;
+}
+
+.footer .next {
+    float:right;
+    margin-bottom: 60px;
+}
+
+.next_btn button {
+    color: white;
+    padding: 10px 20px;
+    cursor:pointer;
+    border: white solid 2px;
+    border-radius: 8px;
+    background-color: indigo;
+}
+
+/*
+.start_btn button:hover {
+    color:darkmagenta;
+}
+*/
+
