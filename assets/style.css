@@ -136,6 +136,7 @@ button:focus{
   background-color: #44b927;
 }
 
+/* 
 .footer {
     margin: 15px;
     background-color: white;
@@ -162,11 +163,6 @@ button:focus{
     border: white solid 2px;
     border-radius: 8px;
     background-color: indigo;
-}
-
-/*
-.start_btn button:hover {
-    color:darkmagenta;
 }
 */
 
