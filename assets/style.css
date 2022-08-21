@@ -40,8 +40,8 @@ body {
 
 .start_btn {
     position:absolute;
-    top: 75%;
-    left: 45%;
+    top: 60%;
+    left: 44%;
 }
 
 /* Start Button Styling */
@@ -59,7 +59,7 @@ body {
     margin-left: 30%;
     margin-top: 8%;
     width: 500px;
-    height: 350px;
+    height: 250px;
     background-color: white;
     border: none;
     outline: none;

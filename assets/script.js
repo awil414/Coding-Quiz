@@ -1,5 +1,5 @@
-// Quiz Questions
-let quizData = [
+// Quiz Questions Variable String
+let quizData= [
     {
         question: "What does HTML stand for?",
         a: "Hypertext Markup Language",
@@ -13,7 +13,7 @@ let quizData = [
         a: "<a url='http://www.dubsfitness.com'>DubsFitness.com</a>",
         b: "<a href='http://www.dubsfitness.com'>DubsFitness.com</a>",
         c: "<a>http://www.dubsfitness.com<a>",
-        d: "<a sugar='http://www.dubsfitness.com'>DubsFitness.com</a>",
+        d: "<a feeditsugar='http://www.dubsfitness.com'>DubsFitness.com</a>",
         correct: "b",
     },
     {
@@ -147,3 +147,113 @@ let quizData = [
 
 ];
 
+// Declare Variables for the Quiz Functions
+let quiz= document.getElementById("quiz");
+let answerEls = document.querySelectorAll(".answer");
+let questionEl = document.getElementById("question");
+let a_text = document.getElementById("a_text");
+let b_text = document.getElementById("b_text");
+let c_text = document.getElementById("c_text");
+let d_text = document.getElementById("d_text");
+let submitBtn = document.getElementById("submit");
+
+// Declare Variables for Timer
+let timeEl = document.querySelector("header .timer");
+let timeText = document.querySelector(".timer .timer_text");
+let timeCount = document.querySelector(".timer .timer_sec");
+
+// If Start Button Is Clicked
+start_btn.onclick = ()=> {
+    info_box.classList.remove("activeInfo"); // hide info box
+    quiz_container.classList.add("currentQuiz"); // show quiz box
+    loadQuiz(); //calling loadQuiz function
+    queCounter(1); // 
+    startTimer(); // calling startTimer function
+}
+
+let timeValue = 300;
+let que_count = 0;
+let que_num = 1;
+let userScore = 0;
+let counter;
+let tryAgain_btn = result_box.querySelector(".restart");
+let quitQuiz_btn = result_box.querySelector(".quit");
+
+// 
+
+// Start Each Quiz with Cleared (if any prior) Questions and Scores
+let currentQuiz = 0
+let score = 0
+
+// Function to Load Quiz
+
+function loadQuiz() {
+
+    deselectAnswers();
+
+    let currentQuizData = quizData[currentQuiz];
+
+    questionEl.innerText = currentQuizData.question;
+    a_text.innerText = currentQuizData.a;
+    b_text.innerText = currentQuizData.b;
+    c_text.innerText = currentQuizData.c;
+    d_text.innerText = currentQuizData.d;
+}
+
+loadQuiz();
+
+/*function getSelected() {
+    let answer = undefined;
+    answerEls.forEach(answerEl => {
+        if(answerEl.checked) {
+            answer = answerEl.id;
+        }
+    });
+    return answer;
+}
+*/
+
+/*
+function deselectAnswers() {
+    answerEls.forEach((answerEl) => {
+        answerEl.checked = false;
+});
+
+function getSelected() {
+    let answer
+    answerEls.forEach(answerEl => {
+        if(answerEl.checked) {
+            answer = answerEl.id
+        }
+    })
+    return answer
+}
+*/
+
+/* Function for Submit Button, Adding to the Score for a Correct Answer, 
+Loading New Question If All Have Not Been Answered, and 
+Displaying Score if Test Is Over
+
+submitBtn.addEventListener("click",() {
+    let answer = getSelected();
+    if(answer) {
+       if(answer === quizData[currentQuiz].correct) {
+           score++
+       }
+
+       currentQuiz++;
+
+       if(currentQuiz < quizData.length) {
+           loadQuiz();
+       } else {
+           quiz.innerHTML = `
+           <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+
+                <button onclick="location.reload()">Reload</button>
+            `;
+        }
+    }
+});
+*/
+
+function showResults()
