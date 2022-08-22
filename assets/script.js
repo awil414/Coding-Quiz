@@ -1,5 +1,5 @@
 // Quiz Questions Variable String
-let quizData= [
+let quizData = [
     {
         question: "What does HTML stand for?",
         a: "Hypertext Markup Language",
@@ -148,7 +148,7 @@ let quizData= [
 ];
 
 // Declare Variables for the Quiz Functions
-let quiz= document.getElementById("quiz");
+let quiz = document.getElementById("quiz");
 let answerEls = document.querySelectorAll(".answer");
 let questionEl = document.getElementById("question");
 let a_text = document.getElementById("a_text");
@@ -157,20 +157,20 @@ let c_text = document.getElementById("c_text");
 let d_text = document.getElementById("d_text");
 let submitBtn = document.getElementById("submit");
 
-// Declare Variables for Timer
+/* Declare Variables for Timer -- HELP!!!
 let timeEl = document.querySelector("header .timer");
 let timeText = document.querySelector(".timer .timer_text");
 let timeCount = document.querySelector(".timer .timer_sec");
 
-// If Start Button Is Clicked
-start_btn.onclick = ()=> {
+// If Start Button Is Clicked -- HELP!!!!
+start_btn.onclick = () => {
     info_box.classList.remove("activeInfo"); // hide info box
     quiz_container.classList.add("currentQuiz"); // show quiz box
     loadQuiz(); //calling loadQuiz function
     queCounter(1); // 
     startTimer(); // calling startTimer function
 }
-
+// HELP!!!
 let timeValue = 300;
 let que_count = 0;
 let que_num = 1;
@@ -179,13 +179,14 @@ let counter;
 let tryAgain_btn = result_box.querySelector(".restart");
 let quitQuiz_btn = result_box.querySelector(".quit");
 
-// 
+*/
 
 // Start Each Quiz with Cleared (if any prior) Questions and Scores
 let currentQuiz = 0
 let score = 0
 
 // Function to Load Quiz
+loadQuiz()
 
 function loadQuiz() {
 
@@ -200,53 +201,38 @@ function loadQuiz() {
     d_text.innerText = currentQuizData.d;
 }
 
-loadQuiz();
+function deselectAnswers() {
+    answerEls.forEach(answerEl => answerEl.checked = false)
+}
 
-/*function getSelected() {
-    let answer = undefined;
+function getSelected() {
+    let answer
     answerEls.forEach(answerEl => {
-        if(answerEl.checked) {
+        if (answerEl.checked) {
             answer = answerEl.id;
         }
     });
     return answer;
 }
-*/
-
-/*
-function deselectAnswers() {
-    answerEls.forEach((answerEl) => {
-        answerEl.checked = false;
-});
-
-function getSelected() {
-    let answer
-    answerEls.forEach(answerEl => {
-        if(answerEl.checked) {
-            answer = answerEl.id
-        }
-    })
-    return answer
-}
-*/
 
 /* Function for Submit Button, Adding to the Score for a Correct Answer, 
 Loading New Question If All Have Not Been Answered, and 
-Displaying Score if Test Is Over
+Displaying Score if Test Is Over */
 
-submitBtn.addEventListener("click",() {
+submitBtn.addEventListener("click", () => {
+    // Check to See the Answer
     let answer = getSelected();
-    if(answer) {
-       if(answer === quizData[currentQuiz].correct) {
-           score++
-       }
+    if (answer) {
+        if (answer === quizData[currentQuiz].correct) {
+            score++
+        }
 
-       currentQuiz++;
+        currentQuiz++;
 
-       if(currentQuiz < quizData.length) {
-           loadQuiz();
-       } else {
-           quiz.innerHTML = `
+        if (currentQuiz < quizData.length) {
+            loadQuiz();
+        } else {
+            quiz.innerHTML = `
            <h2>You answered ${score}/${quizData.length} questions correctly</h2>
 
                 <button onclick="location.reload()">Reload</button>
@@ -254,6 +240,4 @@ submitBtn.addEventListener("click",() {
         }
     }
 });
-*/
 
-function showResults()
