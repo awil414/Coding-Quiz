@@ -33,7 +33,7 @@ let quizData = [
         correct: "b",
     },
     {
-        question: "(In order), what is the tag for a numbered list and a bulleted list?",
+        question: "In order, what is the tag for a numbered list and a bulleted list?",
         a: "<a_lister>, <b_lister>",
         b: "<list>, <ul>",
         c: "<ol>, <ulist>",
@@ -57,7 +57,7 @@ let quizData = [
         correct: "b",
     },
     {
-        question: "(In order),what are the correct HTML elements for playing video files and audio files?",
+        question: "In order, what are the correct HTML elements for playing video files and audio files?",
         a: "<media>, <audio>",
         b: "<iphone, <airpods>",
         c: "<video>, <audio>",
@@ -159,26 +159,11 @@ let submitBtn = document.getElementById("submit");
 let restartBtn = document.getElementById("restart");
 let quitBtn = document.getElementById("quit");
 
-/* Declare Variables for Timer -- HELP!!!
-let timeEl = document.querySelector("");
-let timeText = document.querySelector("");
-let timeCount = document.querySelector("");
-
-// If Start Button Is Clicked -- HELP!!!!
-start_btn.onclick = () => {
-    info_box.classList.remove("activeInfo"); // hide info box
-    quiz_container.classList.add("currentQuiz"); // show quiz box
-    loadQuiz(); //calling loadQuiz function
-    queCounter(1); // 
-    startTimer(); // calling startTimer function
-}
-// HELP!!!
-let timeValue = 300;
+// SCORE HELP!!!
 let que_count = 0;
 let que_num = 1;
 let userScore = 0;
 let counter;
-*/
 
 // Start Counter for Questions and Score
 let currentQuiz = 0 // can I make questions random?
@@ -245,8 +230,41 @@ submitBtn.addEventListener("click", () => {
     }
 });
 
+// Set Variables for startQuiz Function and Timer
+let timerEl = document.getElementById("countdown");
+let message = "Time's Up!";
+let timeLeft = 600;
+
+// Function to Start Quiz and Timer
+function startQuiz() {
+    let timeLeft = 600;
+    document.getElementById("startQuiz").style.display="none";
+    // Use the 'setInterval()' Method to Call a Function to be Executed Every 1000 Milliseconds
+    let timeInterval = setInterval(function () {
+
+        if (timeLeft > 1) {
+            timerEl.textContent = timeLeft + " seconds left";
+            timeLeft--;
+        } else if (timeLeft === 1) {
+            timeLeft.textContent = timeLeft + " second left";
+            timeLeft--;
+        } else {
+            timerEl.textContent = "";
+            clearInterval(timeInterval);
+            document.getElementById("startQuiz").style.display="block";
+            displayMessage();
+        }
+    }, 1000);
+    
+}
+
 /*Create a Function to Reset Score, Current Quiz Index, 
-Remove Hide Class from Elements, and Call Begin Quiz*/
+Remove Hide Class from Elements, and Call Begin Quiz
 
-
-
+function restart() {
+    currentQuiz = 0;
+    submitBtn.classList.remove("hide");
+    score = 0;
+    beginQuiz();
+}
+*/
