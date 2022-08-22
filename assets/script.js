@@ -1,4 +1,4 @@
-// Quiz Questions Variable String
+// Array of Quiz Questions
 let quizData = [
     {
         question: "What does HTML stand for?",
@@ -156,11 +156,13 @@ let b_text = document.getElementById("b_text");
 let c_text = document.getElementById("c_text");
 let d_text = document.getElementById("d_text");
 let submitBtn = document.getElementById("submit");
+let restartBtn = document.getElementById("restart");
+let quitBtn = document.getElementById("quit");
 
 /* Declare Variables for Timer -- HELP!!!
-let timeEl = document.querySelector("header .timer");
-let timeText = document.querySelector(".timer .timer_text");
-let timeCount = document.querySelector(".timer .timer_sec");
+let timeEl = document.querySelector("");
+let timeText = document.querySelector("");
+let timeCount = document.querySelector("");
 
 // If Start Button Is Clicked -- HELP!!!!
 start_btn.onclick = () => {
@@ -176,19 +178,21 @@ let que_count = 0;
 let que_num = 1;
 let userScore = 0;
 let counter;
-let tryAgain_btn = result_box.querySelector(".restart");
-let quitQuiz_btn = result_box.querySelector(".quit");
-
 */
 
-// Start Each Quiz with Cleared (if any prior) Questions and Scores
-let currentQuiz = 0
+// Start Counter for Questions and Score
+let currentQuiz = 0 // can I make questions random?
 let score = 0
 
-// Function to Load Quiz
-loadQuiz()
+submitBtn.addEventListener("click", submit);
+restartBtn.addEventListener("click", restart);
+quitBtn.addEventListener("click", quit);
 
-function loadQuiz() {
+
+// Function to Load Quiz
+beginQuiz()
+
+function beginQuiz() {
 
     deselectAnswers();
 
@@ -230,7 +234,7 @@ submitBtn.addEventListener("click", () => {
         currentQuiz++;
 
         if (currentQuiz < quizData.length) {
-            loadQuiz();
+            beginQuiz();
         } else {
             quiz.innerHTML = `
            <h2>You answered ${score}/${quizData.length} questions correctly</h2>
@@ -240,4 +244,9 @@ submitBtn.addEventListener("click", () => {
         }
     }
 });
+
+/*Create a Function to Reset Score, Current Quiz Index, 
+Remove Hide Class from Elements, and Call Begin Quiz*/
+
+
 
