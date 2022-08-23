@@ -159,20 +159,47 @@ let submitBtn = document.getElementById("submit");
 let restartBtn = document.getElementById("restart");
 let quitBtn = document.getElementById("quit");
 
-// SCORE HELP!!!
+// Declare EventListeners for submit, restart, and quit buttons
+submitBtn.addEventListener("click", submit);
+
+
+// Declare Variables for startQuiz Function and Timer
+let timerEl = document.getElementById("countdown");
+let message = "Time's Up!";
+let timeLeft = 400;
+
+// Function to Start Quiz and Timer
+function startQuiz() {
+    let timeLeft = 400;
+    document.getElementById("startQuiz").style.display="none";
+    // Use the 'setInterval()' Method to Call a Function to be Executed Every 1000 Milliseconds
+    let timeInterval = setInterval(function () {
+
+        if (timeLeft > 1) {
+            timerEl.textContent = timeLeft + " seconds left";
+            timeLeft--;
+        } else if (timeLeft === 1) {
+            timeLeft.textContent = timeLeft + " second left";
+            timeLeft--;
+        } else {
+            timerEl.textContent = "";
+            clearInterval(timeInterval);
+            document.getElementById("startQuiz").style.display="block";
+            displayMessage();
+        }
+    }, 1000);
+    
+}
+
+/*SCORE HELP!!!
 let que_count = 0;
 let que_num = 1;
 let userScore = 0;
-let counter;
+let counter; */
 
 // Start Counter for Questions and Score
 let currentQuiz = 0 // can I make questions random?
 let score = 0
-
-submitBtn.addEventListener("click", submit);
-restartBtn.addEventListener("click", restart);
-quitBtn.addEventListener("click", quit);
-
 
 // Function to Load Quiz
 beginQuiz()
@@ -224,39 +251,130 @@ submitBtn.addEventListener("click", () => {
             quiz.innerHTML = `
            <h2>You answered ${score}/${quizData.length} questions correctly</h2>
 
-                <button onclick="location.reload()">Reload</button>
+                <button onclick="location.reload()">Try again!</button>
             `;
         }
     }
 });
 
-// Set Variables for startQuiz Function and Timer
-let timerEl = document.getElementById("countdown");
-let message = "Time's Up!";
-let timeLeft = 600;
+/*let NO_OF_HIGH_SCORES = 3;
+let HIGH_SCORES = 'highScores';
 
-// Function to Start Quiz and Timer
-function startQuiz() {
-    let timeLeft = 600;
-    document.getElementById("startQuiz").style.display="none";
-    // Use the 'setInterval()' Method to Call a Function to be Executed Every 1000 Milliseconds
-    let timeInterval = setInterval(function () {
+let highScoreString = localStorage.getItem(HIGH_SCORES);
+let highScores = JSON.parse(highScoreString) ?? [];
 
-        if (timeLeft > 1) {
-            timerEl.textContent = timeLeft + " seconds left";
-            timeLeft--;
-        } else if (timeLeft === 1) {
-            timeLeft.textContent = timeLeft + " second left";
-            timeLeft--;
-        } else {
-            timerEl.textContent = "";
-            clearInterval(timeInterval);
-            document.getElementById("startQuiz").style.display="block";
-            displayMessage();
-        }
-    }, 1000);
+function checkHighScore(score) {
+    let highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
+    let lowestScore = highScores[NO_OF_HIGH_SCORES - 1]?.score ?? 0;
     
+    if (score > lowestScore) {
+      saveHighScore(score, highScores); // TODO
+      showHighScores(); // TODO
+    }
+  }
+
+  function gameOver() {
+    // Other game over logic.
+    checkHighScore(account.score);
+  }
+
+  let initials = prompt("Save your score! Enter initials:");
+
+  let newScore = { score, initials };
+
+  function saveHighScore(score, highScores) {
+    let initials = prompt("You got a highscore! Enter name:");
+    const newScore = { score, initials };
+    
+    // 1. Add to list
+    highScores.push(newScore);
+  
+    // 2. Sort the list
+    highScores.sort((a, b) => b.score - a.score);
+    
+    // 3. Select new list
+    highScores.splice(NO_OF_HIGH_SCORES);
+    
+    // 4. Save to local storage
+    localStorage.setItem(HIGH_SCORES, JSON.stringify(highScores));
+  };
+
+  highScores.map((score) => `<li>${score.score} — ${score.name}`);
+
+  let highScoreList = document.getElementById(HIGH_SCORES);
+
+highScoreList.innerHTML = highScores.map((score) => 
+  `<li>${score.score} - ${score.initials}`
+);
+
+function showHighScores() {
+    let highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
+    let highScoreList = document.getElementById(HIGH_SCORES);
+    
+    highScoreList.innerHTML = highScores
+      .map((score) => `<li>${score.score} - ${score.initials}`)
+      .join('');
+  }
+
+
+
+
+END 
+  /*
+let initialsInput = document.querySelector("#initials");
+//var passwordInput = document.querySelector("#password");
+var saveScoreButton = document.querySelector("#save-score");
+var msgDiv = document.querySelector("#msg");
+var userInitialsSpan = document.querySelector("#user-initials");
+//var userPasswordSpan = document.querySelector("#user-password");
+
+//var noOfStudents = document.querySelector("#totalStudents");
+
+renderHighScores();
+
+function displayMessage(type, message) {
+  msgDiv.textContent = message;
+  msgDiv.setAttribute("class", type);
 }
+
+function renderHighScores() {
+  var initials = localStorage.getItem("initials");
+  // var password = localStorage.getItem("password");
+  var totalStudents = localStorage.getItem("totalNoOfStudents")
+
+
+  if (!initials ) {
+    return;
+  }
+
+  userInitialsSpan.textContent = initials;
+  
+  //document.querySelector("#no-of-students").textContent = totalStudents;
+  // userPasswordSpan.textContent = password;
+}
+
+saveScoreButton.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var initials = document.querySelector("#initials").value;
+  // var password = document.querySelector("#password").value;
+
+  if (initials === "") {
+    displayMessage("error", "Initials cannot be blank");
+  } else {
+    displayMessage("success", "Score Saved");
+    
+    localStorage.setItem("initials", initials)
+    // localStorage.setItem("totalNoOfStudents",noOfStudents.value)
+    // localStorage.setItem("email", email);
+    // localStorage.setItem("password", password);
+    renderHighScores();
+  }
+});
+
+
+
+
 
 /*Create a Function to Reset Score, Current Quiz Index, 
 Remove Hide Class from Elements, and Call Begin Quiz

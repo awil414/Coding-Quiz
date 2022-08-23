@@ -58,7 +58,7 @@ ul li label {
 }
 
 button {
-    background-color: white;
+    background-color: lightgray;
     color: indigo;
     border: 2px solid indigo;
     border-radius: 12px;
@@ -68,7 +68,10 @@ button {
     font-size: 15px;
     font-family: inherit;
     padding: 10px;
+    /* display:inline-block */
 }
+
+
 div#startQuiz {
     position: absolute;
     z-index: 99999;
@@ -98,6 +101,7 @@ button:focus {
 .hide {
     display: none;
 }
+
 
 /*.header {
     background-color: white;
