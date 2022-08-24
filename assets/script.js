@@ -156,8 +156,6 @@ let b_text = document.getElementById("b_text");
 let c_text = document.getElementById("c_text");
 let d_text = document.getElementById("d_text");
 let submitBtn = document.getElementById("submit");
-let restartBtn = document.getElementById("restart");
-let quitBtn = document.getElementById("quit");
 
 // Declare EventListeners for submit, restart, and quit buttons
 submitBtn.addEventListener("click", submit);
@@ -166,11 +164,11 @@ submitBtn.addEventListener("click", submit);
 // Declare Variables for startQuiz Function and Timer
 let timerEl = document.getElementById("countdown");
 let message = "Time's Up!";
-let timeLeft = 400;
+let timeLeft = 20;
 
 // Function to Start Quiz and Timer
 function startQuiz() {
-    let timeLeft = 400;
+    let timeLeft = 20;
     document.getElementById("startQuiz").style.display="none";
     // Use the 'setInterval()' Method to Call a Function to be Executed Every 1000 Milliseconds
     let timeInterval = setInterval(function () {
@@ -257,6 +255,14 @@ submitBtn.addEventListener("click", () => {
     }
 });
 
+let userScore = document.querySelector("save-score-btn");
+//let myHeading = document.querySelector("h3");
+
+function setUserScore() {
+    let myInitials = prompt("Please enter your initials.");
+    localStorage.setItem("initials", myInitials);
+    //myHeading.textContent = `Your score is, ${myInitials}`;
+  }
 /*let NO_OF_HIGH_SCORES = 3;
 let HIGH_SCORES = 'highScores';
 
@@ -321,14 +327,11 @@ function showHighScores() {
 
 END 
   /*
-let initialsInput = document.querySelector("#initials");
-//var passwordInput = document.querySelector("#password");
-var saveScoreButton = document.querySelector("#save-score");
-var msgDiv = document.querySelector("#msg");
-var userInitialsSpan = document.querySelector("#user-initials");
-//var userPasswordSpan = document.querySelector("#user-password");
-
-//var noOfStudents = document.querySelector("#totalStudents");
+let initialsInput = document.getElementbyId("#initials");
+var saveScoreButton = document.getElementById("#save-score-btn");
+var msgDiv = document.getElementById("#msg");
+var userInitialsSpan = document.getElementById("#user-initials");
+var userScore = document.getElementById("user-score");
 
 renderHighScores();
 
@@ -339,8 +342,8 @@ function displayMessage(type, message) {
 
 function renderHighScores() {
   var initials = localStorage.getItem("initials");
-  // var password = localStorage.getItem("password");
-  var totalStudents = localStorage.getItem("totalNoOfStudents")
+  var userScore = localStorage.getItem("user-score");
+  var highScoreList = localStorage.getItem("high-score-list")
 
 
   if (!initials ) {
@@ -349,25 +352,24 @@ function renderHighScores() {
 
   userInitialsSpan.textContent = initials;
   
-  //document.querySelector("#no-of-students").textContent = totalStudents;
-  // userPasswordSpan.textContent = password;
+  document.getElementById("#high-score-list").textContent = highScores;
+  
 }
 
 saveScoreButton.addEventListener("click", function(event) {
   event.preventDefault();
 
-  var initials = document.querySelector("#initials").value;
-  // var password = document.querySelector("#password").value;
+  var initials = document.getElementById("#initials").value;
+  var userScore = document.getElementById(("#user-score").value;
 
   if (initials === "") {
-    displayMessage("error", "Initials cannot be blank");
+    displayMessage("error", "Initials can't be blank");
   } else {
     displayMessage("success", "Score Saved");
     
     localStorage.setItem("initials", initials)
-    // localStorage.setItem("totalNoOfStudents",noOfStudents.value)
-    // localStorage.setItem("email", email);
-    // localStorage.setItem("password", password);
+    localStorage.setItem("high-score-list", highScoreList.value)
+    localStorage.setItem("userScore", userScore);
     renderHighScores();
   }
 });
