@@ -12,3 +12,7 @@ To Dos:
 3. Create a function to deduct time by 10 seconds for every incorrect response, as well as display text indicating whether an answer is correct or incorrect after user selection.
 
 Deployed URL: https://awil414.github.io/Coding-Quiz/
+
+<img width="1280" alt="Screen Shot 2022-08-25 at 2 45 57 PM" src="https://user-images.githubusercontent.com/109228469/186754897-7699fd37-b3ec-4b83-add3-f6d703cf4390.png">
+<img width="1280" alt="Screen Shot 2022-08-25 at 2 46 58 PM" src="https://user-images.githubusercontent.com/109228469/186754916-4d0a8325-166e-4678-b673-81c871134445.png">
+
