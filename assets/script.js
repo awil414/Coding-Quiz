@@ -164,12 +164,12 @@ submitBtn.addEventListener("click", submit);
 // Declare Variables for startQuiz Function and Timer
 let timerEl = document.getElementById("countdown");
 let message = "Time's Up!";
-let timeLeft = 20;
+let timeLeft = 240;
 
 // Function to Start Quiz and Timer
 function startQuiz() {
-    let timeLeft = 20;
-    document.getElementById("startQuiz").style.display="none";
+    let timeLeft = 240;
+    document.getElementById("startQuiz").style.display = "none";
     // Use the 'setInterval()' Method to Call a Function to be Executed Every 1000 Milliseconds
     let timeInterval = setInterval(function () {
 
@@ -182,22 +182,16 @@ function startQuiz() {
         } else {
             timerEl.textContent = "";
             clearInterval(timeInterval);
-            document.getElementById("startQuiz").style.display="block";
-            displayMessage();
+            endQuiz();
         }
     }, 1000);
-    
+
 }
 
-/*SCORE HELP!!!
-let que_count = 0;
-let que_num = 1;
-let userScore = 0;
-let counter; */
-
 // Start Counter for Questions and Score
-let currentQuiz = 0 // can I make questions random?
+let currentQuiz = 0 // would like to make questions random
 let score = 0
+let highScores = JSON.parse(localStorage.getItem("HIGH_SCORES")) || []
 
 // Function to Load Quiz
 beginQuiz()
@@ -214,7 +208,7 @@ function beginQuiz() {
     c_text.innerText = currentQuizData.c;
     d_text.innerText = currentQuizData.d;
 }
-
+ // Function to Deselect Answers
 function deselectAnswers() {
     answerEls.forEach(answerEl => answerEl.checked = false)
 }
@@ -246,145 +240,44 @@ submitBtn.addEventListener("click", () => {
         if (currentQuiz < quizData.length) {
             beginQuiz();
         } else {
-            quiz.innerHTML = `
+            endQuiz();
+        }
+
+    }
+});
+
+//Function to End Quiz and Load Prompt for User to Enter Initials and Save to Local Storage
+function endQuiz() {
+    quiz.innerHTML = `
            <h2>You answered ${score}/${quizData.length} questions correctly</h2>
 
                 <button onclick="location.reload()">Try again!</button>
             `;
-        }
+    let save_btn = document.createElement("button")
+    save_btn.textContent = "Save Score"
+    save_btn.addEventListener("click", function () {
+        let initials = prompt("You got a high score! Enter your initials here:");
+        let newScore = { score, initials };
+
+        // 1. Add to list
+        highScores.push(newScore);
+
+        // 2. Sort the list
+        highScores.sort((a, b) => b.score - a.score);
+
+        // 3. Save to local storage
+        localStorage.setItem("HIGH_SCORES", JSON.stringify(highScores));
+    })
+    quiz.append(save_btn)
+}
+
+// Function to Show High Scores
+function checkHighScore() {
+    let html = ""
+    for (let i = 0; i < highScores.length; i++) {
+        let scoreEl = `<h3> ${highScores[i].initials} - ${highScores[i].score}`
+        html += scoreEl;
     }
-});
-
-let userScore = document.querySelector("save-score-btn");
-//let myHeading = document.querySelector("h3");
-
-function setUserScore() {
-    let myInitials = prompt("Please enter your initials.");
-    localStorage.setItem("initials", myInitials);
-    //myHeading.textContent = `Your score is, ${myInitials}`;
-  }
-/*let NO_OF_HIGH_SCORES = 3;
-let HIGH_SCORES = 'highScores';
-
-let highScoreString = localStorage.getItem(HIGH_SCORES);
-let highScores = JSON.parse(highScoreString) ?? [];
-
-function checkHighScore(score) {
-    let highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
-    let lowestScore = highScores[NO_OF_HIGH_SCORES - 1]?.score ?? 0;
-    
-    if (score > lowestScore) {
-      saveHighScore(score, highScores); // TODO
-      showHighScores(); // TODO
-    }
-  }
-
-  function gameOver() {
-    // Other game over logic.
-    checkHighScore(account.score);
-  }
-
-  let initials = prompt("Save your score! Enter initials:");
-
-  let newScore = { score, initials };
-
-  function saveHighScore(score, highScores) {
-    let initials = prompt("You got a highscore! Enter name:");
-    const newScore = { score, initials };
-    
-    // 1. Add to list
-    highScores.push(newScore);
-  
-    // 2. Sort the list
-    highScores.sort((a, b) => b.score - a.score);
-    
-    // 3. Select new list
-    highScores.splice(NO_OF_HIGH_SCORES);
-    
-    // 4. Save to local storage
-    localStorage.setItem(HIGH_SCORES, JSON.stringify(highScores));
-  };
-
-  highScores.map((score) => `<li>${score.score} — ${score.name}`);
-
-  let highScoreList = document.getElementById(HIGH_SCORES);
-
-highScoreList.innerHTML = highScores.map((score) => 
-  `<li>${score.score} - ${score.initials}`
-);
-
-function showHighScores() {
-    let highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
-    let highScoreList = document.getElementById(HIGH_SCORES);
-    
-    highScoreList.innerHTML = highScores
-      .map((score) => `<li>${score.score} - ${score.initials}`)
-      .join('');
-  }
-
-
-
-
-END 
-  /*
-let initialsInput = document.getElementbyId("#initials");
-var saveScoreButton = document.getElementById("#save-score-btn");
-var msgDiv = document.getElementById("#msg");
-var userInitialsSpan = document.getElementById("#user-initials");
-var userScore = document.getElementById("user-score");
-
-renderHighScores();
-
-function displayMessage(type, message) {
-  msgDiv.textContent = message;
-  msgDiv.setAttribute("class", type);
+    quiz.innerHTML = html;
 }
 
-function renderHighScores() {
-  var initials = localStorage.getItem("initials");
-  var userScore = localStorage.getItem("user-score");
-  var highScoreList = localStorage.getItem("high-score-list")
-
-
-  if (!initials ) {
-    return;
-  }
-
-  userInitialsSpan.textContent = initials;
-  
-  document.getElementById("#high-score-list").textContent = highScores;
-  
-}
-
-saveScoreButton.addEventListener("click", function(event) {
-  event.preventDefault();
-
-  var initials = document.getElementById("#initials").value;
-  var userScore = document.getElementById(("#user-score").value;
-
-  if (initials === "") {
-    displayMessage("error", "Initials can't be blank");
-  } else {
-    displayMessage("success", "Score Saved");
-    
-    localStorage.setItem("initials", initials)
-    localStorage.setItem("high-score-list", highScoreList.value)
-    localStorage.setItem("userScore", userScore);
-    renderHighScores();
-  }
-});
-
-
-
-
-
-/*Create a Function to Reset Score, Current Quiz Index, 
-Remove Hide Class from Elements, and Call Begin Quiz
-
-function restart() {
-    currentQuiz = 0;
-    submitBtn.classList.remove("hide");
-    score = 0;
-    beginQuiz();
-}
-*/

@@ -17,10 +17,10 @@ body {
 
 /* Quiz Container Styling */
 .quiz_container {
-    width: 100vw;
-    max-width: 50%;
-    height: 60vh;
-    padding: 30px;
+    width: 90vw;
+    max-width: 70%;
+    height: 75vh;
+    padding: 20px;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -30,12 +30,7 @@ body {
     overflow: hidden;
 }
 
-/*
-.quiz-header {
-    padding: 30px;
-}
-*/
-
+/* Style Question Text */
 h2 {
     padding: 10px;
     text-align: center;
@@ -43,6 +38,7 @@ h2 {
     margin-bottom: 30px;
 }
 
+/* Style Answer Options Text */
 ul {
     list-style-type: none;
     padding: 0;
@@ -53,10 +49,12 @@ ul li {
     margin: 15px 0;
 }
 
+/* Stlye cursor for Question Selection */
 ul li label {
     cursor: pointer;
 }
 
+/* Style Buttons */
 button {
     background-color: lightgray;
     color: indigo;
@@ -71,7 +69,7 @@ button {
     /* display:inline-block */
 }
 
-
+/* Style / Position Start Quiz Button */
 div#startQuiz {
     position: absolute;
     z-index: 99999;
@@ -85,10 +83,10 @@ div#startQuiz {
     height: 100vh;
     text-align: center;
 }
-
-.quiz_header {
+ .quiz_header{
     position: relative;
-}
+ }
+
 button:hover {
     background-color: gold;
 }
@@ -101,84 +99,3 @@ button:focus {
 .hide {
     display: none;
 }
-
-
-/*.header {
-    background-color: white;
-    color: slateblue;
-    border: 3px solid black;
-    padding: 20px;
-    text-align: center;
-}
-
-.header .timer {
-    float: right;
-    margin-top: 40px;
-    color: white;
-}
-
-.header .scores {
-    float: left;
-    margin-top: 20px;
-}
-
-.scores_btn button {
-    margin-top: 15px;
-    font-size: 15px;
-    color: indigo;
-    padding: 15px 20px;
-    border: indigo solid 2px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-/* Start Button Styling */
-/*
-.start_btn button {
-    position: absolute;
-    top: 40%;
-    left: 5%;
-    max-width: 20%;
-    font-size: 25px;
-    color: indigo;
-    padding: 15px 20px;
-    border: indigo solid 5px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
- Info Box Styling
-.info_box {
-    margin-left: 30%;
-    margin-top: 8%;
-    width: 500px;
-    height: 250px;
-    background-color: white;
-    border: none;
-    outline: none;
-    border-radius: 4px;
-    font-size: 15px;
-    text-align: center;
-}
-
-/* Info Box Title Styling 
-.info_box_title {
-    height: 50px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0px 15px;
-    font-size: 20px;
-}
-
-/* Info Box Rules Styling 
-.info_box_text {
-    padding: 15px 0px;
-    font-size: 14px;
-}
-
-span {
-    font-weight: 500px;
-    color: red;
-}
-*/
