@@ -10,3 +10,5 @@ To Dos:
 1. Add text area to launch page with information about the test, above the Start Quiz button.
 2. Move HIGH SCORE button to the end of the quiz, so it will show up when user is finished with the quiz instead of during the quiz question selections.
 3. Create a function to deduct time by 10 seconds for every incorrect response, as well as display text indicating whether an answer is correct or incorrect after user selection.
+
+Deployed URL: https://awil414.github.io/Coding-Quiz/
